@@ -1,10 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState } from 'react';
+import LoginForm from './components/LoginForm';
 function App() {
 	return (
 		<div className='App'>
-			<h3>Đã update App.JS rồi nhé</h3>
+			<LoginForm />
 		</div>
 	);
 }
