@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DefaultLayout from './components/layouts';
 import HomePage from './pages/HomePage';
 
 function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [anotherFlag, setAnotherFlag] = useState(false);
+
+	const toggleLogin = newValue => {
+		setIsLoggedIn(newValue);
+	};
 
 	return (
 		<div className='App'>
