@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DefaultLayout from './components/layouts';
 import HomePage from './pages/HomePage';
+import Header from './components/Header';
 
 function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -12,9 +13,8 @@ function App() {
 
 	return (
 		<div className='App'>
-			<DefaultLayout>
-				<HomePage />
-			</DefaultLayout>
+			<Header />
+			<h1 className='text-center'>Đây là trang index</h1>
 		</div>
 	);
 }
@@ -26,3 +26,4 @@ export default App;
 
 // nếu người dùng đã đăng nhập
 // =>  message Xin chào User + <Header></Header>
+// SPA - single page app | MPA - multi pages app

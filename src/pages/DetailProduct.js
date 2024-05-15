@@ -1,9 +1,9 @@
-import React from 'react';
-import ProductCard from '../components/Product/ProductCard';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
-import { useSearchParams } from 'react-router-dom';
 
-export default function HomePage() {
+export default function DetailProduct() {
+	const { productId } = useParams();
 	const listData = [
 		{
 			id: 1,
@@ -55,26 +55,43 @@ export default function HomePage() {
 		},
 	];
 
-	const [searchParams, setSearchParams] = useSearchParams();
+	const [loadingDetail, setLoadingDetail] = useState(true);
+	const [detailData, setDetailData] = useState(null);
 
-	const renderListProduct = () => {
-		const listProductCard = listData.map((item, index) => {
-			return <ProductCard key={item.id} product={item} />;
-		});
-		return listProductCard;
-	};
-	console.log(searchParams);
-	console.log(searchParams.get('price'));
+	useEffect(() => {
+		setTimeout(() => {
+			const result = listData.find(product => product.id === +productId);
+			setDetailData(result);
+			setLoadingDetail(false);
+		}, 800);
+	}, []);
+
 	return (
-		<div className=' special-text'>
+		<div>
 			<Header />
-			<h2 className='my-5'>Danh sách sản phẩm</h2>
-			<p>url search params: {searchParams} </p>
-			<div className='row'>{renderListProduct()}</div>
+			<h1>Chi tiết sản phẩm:</h1>
+			{!detailData ? (
+				loadingDetail ? (
+					<>Loading product ...</>
+				) : (
+					<>No data found - Try again</>
+				)
+			) : (
+				<div
+					className='card h-100'
+					style={{
+						width: '250px',
+					}}
+				>
+					<img src={detailData.image} className='card-img-top' alt='...' />
+					<div className='card-body'>
+						<h5 className='card-title'>{detailData.name}</h5>
+						<p className='card-text'>{detailData.description}</p>
+					</div>
+				</div>
+			)}
 		</div>
 	);
 }
 
-//  searchParams - queryParams- ?key1=value1&key2=value2
-
-// url params
+// /danh-sach-san-pham/1

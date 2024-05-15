@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function ProductCard({ product = {} }) {
 	return (
@@ -8,9 +9,9 @@ export default function ProductCard({ product = {} }) {
 				<div className='card-body'>
 					<h5 className='card-title'>{product.name}</h5>
 					<p className='card-text'>{product.description}</p>
-					<a href='#' className='btn btn-success'>
+					<Link to={`/danh-sach-san-pham/${product.id}`} className='btn btn-success'>
 						Buy Now
-					</a>
+					</Link>
 				</div>
 			</div>
 		</div>
